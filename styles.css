@@ -84,6 +84,21 @@ html, body {
   background-color: #6C8C9E;
 }
 
+@media (min-width: 769px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh; /* เต็มความสูงของหน้าจอ */
+    overflow-y: auto; /* เลื่อนภายใน sidebar ได้ถ้ารายการยาว */
+    z-index: 1000; /* ให้อยู่เหนือเนื้อหาอื่น */
+  }
+
+  .main-content {
+    margin-left: 250px; /* ขยับเนื้อหาออกจาก sidebar */
+  }
+}
+
 /* Main Content */
 .main-content {
   flex: 1;
