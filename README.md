@@ -3,6 +3,7 @@
 
 Project เก็บสะสมผมงานรูปภาพได้ และสามารถเก็บไฟล์ขนาดใหญ่ได้ (ไม่ต้องย่อขนาดภาพลง)
 
+https://kunasinphoto.vercel.app/ - Visit preview site
 
 ## Features
 
