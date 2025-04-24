@@ -1,0 +1,477 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #ECEFCA;
+  color: #213448;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  background-color: #213448;
+  color: #94B4C1;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar li {
+  margin: 0.5rem 0;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+  background-color: #547792;
+}
+
+.sidebar .submenu {
+  padding-left: 1rem;
+  display: none;
+  z-index: 100; /* เพิ่ม z-index เพื่อให้เมนูย่อยแสดงได้ในระดับที่สูงกว่า */
+}
+
+.sidebar .submenu.show {
+  display: block;
+  position: relative;
+}
+
+/* การเปลี่ยนสีเมื่อเอาเมาส์ไปวางบนเมนูย่อย */
+.sidebar .submenu li:hover {
+  background-color: #213448; /* เปลี่ยนเป็นสีที่ต้องการ */
+}
+
+.sidebar .sub-menu li {
+  margin: 0.5rem 0;
+}
+
+.sidebar .sub-menu li:hover {
+  background-color: #6C8C9E;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 2rem 1rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+/* Gallery */
+.gallery {
+  column-count: 4;
+  column-gap: 16px;
+  padding: 2rem 1rem;
+}
+
+.photo {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-in-out;
+}
+
+.photo.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.photo:hover img {
+  transform: scale(1.05);
+  filter: brightness(0.85);
+}
+
+@media (max-width: 1200px) {
+  .gallery {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery {
+    column-count: 1;
+  }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Modal */
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* ยืดหยุ่นแนวตั้ง */
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 40px 10px; /* กันไม่ให้ caption ชิดขอบ */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 12px;
+}
+
+#caption {
+  color: #ccc;
+  font-size: 1rem;
+  margin-top: 20px;
+  padding: 10px 20px;
+  text-align: center;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal .close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.modal .close:hover {
+  color: #bbb;
+}
+
+.modal-content-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent; /* ไม่มีพื้นหลัง */
+  color: white; /* สีของไอคอน */
+  font-size: 30px; /* ขนาดไอคอน */
+  border: none; /* ไม่มีกรอบ */
+  padding: 10px;
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prev {
+  left: 10px; /* ปุ่มซ้าย */
+}
+
+.next {
+  right: 10px; /* ปุ่มขวา */
+}
+
+.prev:hover, .next:hover {
+  color: #bbb; /* เปลี่ยนสีเมื่อ hover */
+}
+
+.close {
+  font-size: 40px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.close:hover {
+  color: #bbb;
+}
+
+/* ปุ่มเมนูซ่อนในจอใหญ่ */
+.menu-button {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #94B4C1;
+  cursor: pointer;
+}
+
+/* ปรับ layout หัวข้อ sidebar ให้เรียงซ้าย-ขวา */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Responsive: ซ่อนเมนู sidebar ในจอเล็ก */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1000;
+    background-color: #213448;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .main-content {
+    margin-top: 60px; /* ให้เนื้อหาขยับลงมาหน่อย ไม่ถูกแถบเมนูบัง */
+  }
+
+  #sidebar-menu {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease-in-out;
+  }
+  
+  #sidebar-menu.show {
+    max-height: 500px; /* ความสูงที่เพียงพอสำหรับเมนูทั้งหมด */
+  }
+}
+
+.menu-button {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #94B4C1;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.menu-button.active {
+  transform: rotate(90deg); /* หมุนเล็กน้อยเวลาเปลี่ยน */
+}
+
+@media (max-width: 768px) {
+  .menu-button {
+    display: block;
+  }
+}
+
+/* ปุ่ม Toggle */
+.toggle-theme {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 8px 16px;
+  border: none;
+  background-color: #547792;
+  color: white;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 9999;
+}
+.toggle-theme:hover {
+  background-color: #3d5b6b;
+}
+
+/* Dark Mode Theme */
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode .sidebar {
+  background-color: #1e1e1e;
+  color: #cccccc;
+}
+
+body.dark-mode .sidebar li:hover,
+body.dark-mode .sidebar li.active {
+  background-color: #333333;
+}
+
+body.dark-mode .main-content {
+  background-color: #121212;
+}
+
+body.dark-mode .photo {
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .photo:hover img {
+  filter: brightness(1.1);
+}
+
+body.dark-mode footer {
+  color: #999;
+}
+
+body.dark-mode .modal {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+/* Toggle Switch Style with Icon */
+.switch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  background-color: #547792;
+  border-radius: 34px;
+  padding: 0 10px;
+  width: 60px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.4s;
+}
+
+.slider .icon {
+  color: #fff;
+  opacity: 0.4;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+input:checked + .slider .moon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+input:checked + .slider .sun {
+  opacity: 0.2;
+}
+
+input:not(:checked) + .slider .sun {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+input:not(:checked) + .slider .moon {
+  opacity: 0.2;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+#photo-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.sidebar li .count {
+  color: #7393B3;
+  font-size: 0.9em;
+  margin-left: 4px;
+}

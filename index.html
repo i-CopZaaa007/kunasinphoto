@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kunasin Photo</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+    <div class="sidebar-header">
+      <p>KUNASIN PHOTO</p>
+      <button id="menu-toggle" class="menu-button">☰</button>
+    </div>
+    <ul id="sidebar-menu">
+      <li data-filter="all" class="active">All</li>
+      <li data-filter="deepsky">Deep Sky Object</li>
+      <li data-filter="landscape" >Landscape</li>
+      <li data-filter="cityscape">Cityscape</li>
+      <li class="has-sub">
+        <span>Photo Trip ▾</span>
+        <ul class="submenu">
+          <li data-filter="cocktail">COCKTAIL EVER LIVE</li>
+          <li data-filter="newyear">New Year 2025</li>
+        </ul>
+      </li>
+    </ul>
+  </aside>
+
+    <main class="main-content">
+      <header>
+        <h1 id="main-title">My Photo</h1>
+      </header>
+      <section class="gallery">
+        <div class="photo" data-category="landscape" data-caption="Sun Rise">
+          <img src="images/land.jpg" alt="landscape" loading="lazy" class="zoomable">
+        </div>
+        
+        <div class="photo" data-category="cocktail" data-caption="Cocktail Stadium">
+          <img src="images/ct01.JPG" alt="cocktail" loading="lazy" class="zoomable">
+        </div>
+        <div class="photo" data-category="cocktail" data-caption="Cocktail Stadium 2">
+          <img src="images/ct08.JPG" alt="cocktail" loading="lazy" class="zoomable">
+        </div>
+
+        <div class="photo" data-category="deepsky" data-caption="M42 Orion">
+          <img src="images/M42.jpg" alt="deepsky" loading="lazy" class="zoomable">
+        </div>
+        <div class="photo" data-category="deepsky" data-caption="M44 Bee Hive">
+          <img src="images/M44.PNG" alt="deepsky" loading="lazy" class="zoomable">
+        </div>
+        
+        <div class="photo" data-category="cityscape" data-caption="Benjakitti Park">
+          <img src="images/benjakitti.PNG" alt="cityscape" loading="lazy" class="zoomable">
+        </div>
+        <div class="photo" data-category="cityscape" data-caption="O Dian">
+          <img src="images/O-Dian.png" alt="cityscape" loading="lazy" class="zoomable">
+        </div>
+        <div class="photo" data-category="cityscape" data-caption="Moo Deng">
+          <img src="images/Moo-Deng.png" alt="cityscape" loading="lazy" class="zoomable">
+        </div>
+        <div class="photo" data-category="cityscape" data-caption="Sam Yan">
+          <img src="images/001.PNG" alt="cityscape" loading="lazy" class="zoomable">
+        </div>
+        <div class="photo" data-category="cityscape" data-caption="Asarnha Bucha Day">
+          <img src="images/002.PNG" alt="cityscape" loading="lazy" class="zoomable">
+        </div>
+        <div class="photo" data-category="cityscape" data-caption="Wang">
+          <img src="images/Wang.jpg" alt="cityscape" loading="lazy" class="zoomable">
+        </div>
+          
+        <div class="photo" data-category="newyear" data-caption="Happy New Year 2025">
+          <img src="images/New-Year.PNG" alt="newyear" loading="lazy" class="zoomable">
+        </div>
+      </section>
+        
+        <!-- Modal สำหรับแสดงรูปขยาย -->
+        <div id="image-modal" class="modal" style="display: none;">
+          <span class="close">&times;</span>
+          <div class="modal-content-wrapper">
+            <!-- ปุ่มซ้าย -->
+            <button class="prev" id="prev-btn">&lt;</button>
+            <!-- รูปภาพใน modal -->
+            <img class="modal-content" id="modal-img">
+            <!-- ปุ่มขวา -->
+            <button class="next" id="next-btn">&gt;</button>
+          </div>
+          <div id="caption"></div>
+        </div>
+
+      <footer>
+        <p>© PHOTO by Kunasin Charoenwanich.</p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
